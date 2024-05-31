@@ -11,24 +11,25 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  */
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    throw new Error("This will cause a deployment rollback")
-    // let response: APIGatewayProxyResult;
-    // try {
-    //     response = {
-    //         statusCode: 200,
-    //         body: JSON.stringify({
-    //             message: 'hello canary',
-    //         }),
-    //     };
-    // } catch (err) {
-    //     console.error(err);
-    //     response = {
-    //         statusCode: 500,
-    //         body: JSON.stringify({
-    //             message: err instanceof Error ? err.message : 'some error happened',
-    //         }),
-    //     };
-    // }
+    // throw new Error("This will cause a deployment rollback")
 
-    // return response;
+    let response: APIGatewayProxyResult;
+    try {
+        response = {
+            statusCode: 500,
+            body: JSON.stringify({
+                message: 'hello canary',
+            }),
+        };
+    } catch (err) {
+        console.error(err);
+        response = {
+            statusCode: 500,
+            body: JSON.stringify({
+                message: err instanceof Error ? err.message : 'some error happened',
+            }),
+        };
+    }
+
+    return response;
 };
