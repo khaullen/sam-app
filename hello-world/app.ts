@@ -11,10 +11,10 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  */
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    // throw new Error("This will cause a deployment rollback")
-
+    
     let response: APIGatewayProxyResult;
     try {
+        throw new Error("This will cause a deployment rollback")
         response = {
             statusCode: 500,
             body: JSON.stringify({
